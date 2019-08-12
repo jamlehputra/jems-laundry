@@ -1,0 +1,131 @@
+@extends('layouts.master')
+
+@section('content')	
+	<div class="container">
+		<div class="card">
+			<div class="card-header">
+			 <h3>Transaksi</h3>
+			</div>
+			<div class="card-body">
+	@foreach($barang as $fb)
+		<form action="/transaksi/tambah" method="post">
+		{{ csrf_field() }}
+		
+		<div class="form-group">
+		<div class="row">
+		<div class="col-md-2">
+			<label for="exampleInputEmail1">Nama</label>
+		</div>
+		<div class="col-md-3">
+				<input name="nama_barang" type="text" class="form-control" id="exampleInputEmail1" value="{{ $fb->nama_barang }}" aria-describedby="emailHelp" placeholder="Nama Maklon">            
+		</div>
+		<div class="col-md-1"></div>
+		<div class="col-md-2">
+			<label for="exampleInputEmail1">Nomor</label>
+		</div>
+		<div class="col-md-4">
+			<input name="nama_barang" type="text" class="form-control" id="exampleInputEmail1" value="{{ $fb->nama_barang }}" aria-describedby="emailHelp" placeholder="Nama Maklon">            
+		</div>
+		</div>
+<br>
+		<div class="form-group">
+				<div class="row">
+				<div class="col-md-2">
+					<label for="exampleInputEmail1">Alamat</label>
+				</div>
+				<div class="col-md-3">
+						<input name="nama_barang" type="text" class="form-control" id="exampleInputEmail1" value="{{ $fb->nama_barang }}" aria-describedby="emailHelp" placeholder="Nama Maklon">            
+				</div>
+				<div class="col-md-1"></div>
+				<div class="col-md-2">
+					<label for="exampleInputEmail1">Terima Tanggal</label>
+				</div>
+				<div class="col-md-4">
+					<input name="nama_barang" type="text" class="form-control" id="exampleInputEmail1" value="{{ $fb->nama_barang }}" aria-describedby="emailHelp" placeholder="Nama Maklon">            
+				</div>
+				</div>
+<br>
+				<div class="form-group">
+						<div class="row">
+						<div class="col-md-2">
+							<label for="exampleInputEmail1">No. Telp</label>
+						</div>
+						<div class="col-md-3">
+								<input name="nama_barang" type="text" class="form-control" id="exampleInputEmail1" value="{{ $fb->nama_barang }}" aria-describedby="emailHelp" placeholder="Nama Maklon">            
+						</div>
+						<div class="col-md-1"></div>
+						<div class="col-md-2">
+							<label for="exampleInputEmail1">Selesai Tanggal</label>
+						</div>
+						<div class="col-md-4">
+							<input name="nama_barang" type="text" class="form-control" id="exampleInputEmail1" value="{{ $fb->nama_barang }}" aria-describedby="emailHelp" placeholder="Nama Maklon">            
+						</div>
+						</div>
+			
+			
+		</div>
+<br>
+		<div class="form-group">
+			<label for="exampleInputEmail1">Nama Barang</label>
+			<input name="nama_barang" type="text" class="form-control" id="exampleInputEmail1" value="{{ $fb->nama_barang }}" aria-describedby="emailHelp" placeholder="Nama Maklon">            
+		</div>
+
+		<div class="form-group">
+			<label for="exampleInputEmail1">Harga</label>
+			<input name="harga" type="text" class="form-control" id="harga" value="{{ $fb->harga }}" aria-describedby="emailHelp" placeholder="Harga">            
+		</div>
+		
+		<div class="form-group">
+			<label for="exampleInputEmail1">Jumlah</label>
+			<input name="jumlah" type="text" class="form-control" id="jumlah" onkeyup="hitungtotal()" aria-describedby="emailHelp">            
+		</div>
+
+		<div class="form-group">
+			<label for="exampleInputEmail1">Total</label>
+			<input name="total" type="text" class="form-control" id="total"  aria-describedby="emailHelp">            
+		</div>
+
+		<div class="form-group">
+			<label for="exampleInputEmail1">Bayar</label>
+			<input name="bayar" type="text" class="form-control" id="bayar" onkeyup="hitungkembalian()" aria-describedby="emailHelp">            
+		</div>
+
+		<div class="form-group">
+				<label for="exampleInputEmail1">Kembalian</label>
+				<input name="kembalian" type="text" class="form-control" id="kembalian"  aria-describedby="emailHelp">            
+			</div>
+
+			<div class="form-group">
+					<button type="submit" class="btn btn-primary ">Submit</button>
+			</div>
+				
+
+	</form>
+    @endforeach
+			</div>
+		</div>
+	</div>
+
+<script>
+    function hitungtotal(){
+        var val1 = document.getElementById('harga').value;
+        var val2 = document.getElementById('jumlah').value;
+        var hasil = parseInt(val1)*parseInt(val2);
+
+        if(!isNaN(hasil)){
+            document.getElementById('total').value=hasil;
+        }
+    }
+    
+    function hitungkembalian(){
+        var val1 = document.getElementById('total').value;
+        var val2 = document.getElementById('bayar').value;
+        var hasil = parseInt(val2)-parseInt(val1);
+
+        if(!isNaN(hasil)){
+            document.getElementById('kembalian').value=hasil;
+        }
+    }
+</script>
+
+@stop
